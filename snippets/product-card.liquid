@@ -1,0 +1,36 @@
+<div
+  class="product-card"
+  data-product-id="{{ product.id }}"
+  data-product-index="{{ index }}"
+>
+  <div class="product-card__image-wrapper">
+    {% if product.featured_image %}
+      <img
+        src="{{ product.featured_image | image_url: width: 400 }}"
+        alt="{{ product.title | escape }}"
+        class="product-card__image"
+        loading="lazy"
+        width="400"
+        height="400"
+      >
+    {% endif %}
+  </div>
+
+  <div class="product-card__info">
+    <h3 class="product-card__title">
+      {{ product.title }}
+    </h3>
+
+    <div class="product-card__price">
+      {% if product.compare_at_price > product.price %}
+        <span class="price--original">
+          {{ product.compare_at_price | money }}
+        </span>
+      {% endif %}
+
+      <span class="price--current">
+        {{ product.price | money }}
+      </span>
+    </div>
+  </div>
+</div>
