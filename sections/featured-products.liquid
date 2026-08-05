@@ -1,1 +1,67 @@
+<section class="featured-products" id="featured-products">
+  <div class="featured-products__header">
+    <h2 class="section-title">{{ section.settings.title }}</h2>
+    <p class="section-subtitle">{{ section.settings.subtitle }}</p>
+  </div>
 
+  <div class="featured-products__container">
+    <div class="featured-products__grid">
+
+      {% if section.settings.collection != blank %}
+
+        {% assign products = section.settings.collection.products | slice: 0, section.settings.product_limit %}
+
+        {% for product in products %}
+          {% render 'product-card', product: product, index: forloop.index %}
+        {% endfor %}
+
+      {% else %}
+
+        <div class="placeholder">
+          <p>Selecciona una colección en el editor del tema.</p>
+        </div>
+
+      {% endif %}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Productos Destacados",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Colección"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "Nuestros productos más populares"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Colección"
+    },
+    {
+      "type": "range",
+      "id": "product_limit",
+      "label": "Número de productos",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Productos Destacados"
+    }
+  ]
+}
+{% endschema %}
