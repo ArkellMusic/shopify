@@ -1,15 +1,36 @@
 <section
   class="hero-interactive"
   id="hero-interactive"
-  style="min-height: {{ section.settings.height }}vh;"
+  data-enter-url="/collections/all"
 >
-  <div class="hero-interactive__background">
-    <canvas id="hero-canvas" class="hero-canvas"></canvas>
+  <div class="hero-clouds" aria-hidden="true">
+    <div class="cloud-layer cloud-layer--back"></div>
+    <div class="cloud-layer cloud-layer--middle"></div>
+    <div class="cloud-layer cloud-layer--front"></div>
   </div>
 
   <div class="hero-interactive__content">
-    <div class="hero-interactive__text">
 
+    <div
+      class="hero-logo"
+      id="hero-logo"
+      role="img"
+      aria-label="Logo AM"
+      tabindex="0"
+    >
+      {% if shop.brand.logo %}
+        <img
+          src="{{ shop.brand.logo | image_url: width: 900 }}"
+          alt="{{ shop.name | escape }}"
+          class="hero-logo__image"
+          draggable="false"
+        >
+      {% else %}
+        <span class="hero-logo__text">AM</span>
+      {% endif %}
+    </div>
+
+    <div class="hero-interactive__text">
       <h1 class="hero-title">
         {{ section.settings.title }}
       </h1>
@@ -19,20 +40,24 @@
       </p>
 
       <button
-        class="btn btn--secondary"
-        data-scroll-to="featured-products"
+        class="hero-enter"
+        id="hero-enter"
         type="button"
       >
         {{ section.settings.button_text }}
       </button>
-
     </div>
+
+  </div>
+
+  <div class="hero-scroll-hint">
+    Desliza el logo
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Hero Interactivo",
+  "name": "Hero AM",
   "settings": [
     {
       "type": "text",
@@ -44,34 +69,18 @@
       "type": "text",
       "id": "subtitle",
       "label": "Subtítulo",
-      "default": "Ropa y Música Electrónica. Tu estilo, tu sonido."
+      "default": "Ropa y Música Electrónica"
     },
     {
       "type": "text",
       "id": "button_text",
       "label": "Texto del botón",
-      "default": "Explorar Colección"
-    },
-    {
-      "type": "color",
-      "id": "bg_color",
-      "label": "Color de fondo",
-      "default": "#0a0a0a"
-    },
-    {
-      "type": "range",
-      "id": "height",
-      "label": "Altura",
-      "min": 50,
-      "max": 100,
-      "step": 10,
-      "unit": "vh",
-      "default": 100
+      "default": "ENTRAR"
     }
   ],
   "presets": [
     {
-      "name": "Hero Interactivo"
+      "name": "Hero AM"
     }
   ]
 }
