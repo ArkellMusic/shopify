@@ -5,13 +5,10 @@
 >
 
   <div class="hero-clouds" aria-hidden="true">
-    <div class="cloud cloud-1"></div>
-    <div class="cloud cloud-2"></div>
-    <div class="cloud cloud-3"></div>
-    <div class="cloud cloud-4"></div>
+    <div class="cloud-layer cloud-layer--back"></div>
+    <div class="cloud-layer cloud-layer--middle"></div>
+    <div class="cloud-layer cloud-layer--front"></div>
   </div>
-
-  <div class="hero-overlay"></div>
 
   <div class="hero-interactive__content">
 
@@ -19,12 +16,12 @@
       class="hero-logo"
       id="hero-logo"
       role="img"
-      aria-label="Logo AM"
+      aria-label="{{ shop.name | escape }}"
       tabindex="0"
     >
       <img
-        src="{{ 'logo-am.png' | asset_url }}"
-        alt="AM Shop"
+        src="{{ 'Logo-am.png' | asset_url }}"
+        alt="{{ shop.name | escape }}"
         class="hero-logo__image"
         draggable="false"
       >
