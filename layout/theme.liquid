@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    {{ page_title }}
+    {% if current_tags %} – {{ current_tags | join: ', ' }}{% endif %}
+    {% if current_page != 1 %} – Página {{ current_page }}{% endif %}
+    {% unless page_title contains shop.name %} – {{ shop.name }}{% endunless %}
+  </title>
+
+  <meta
+    name="description"
+    content="{{ page_description | escape }}"
+  >
+
+  {{ content_for_header }}
+
+  <link
+    rel="stylesheet"
+    href="{{ 'theme.css' | asset_url }}"
+  >
+</head>
+
+<body class="template-{{ template.name | handle }}">
+
+  {% render 'header' %}
+
+  <main id="MainContent">
+    {{ content_for_layout }}
+  </main>
+
+  {% render 'footer' %}
+
+  <script
+    src="{{ 'theme.js' | asset_url }}"
+    defer
+  ></script>
+
+  <script
+    src="{{ 'hero-bg.js' | asset_url }}"
+    defer
+  ></script>
+
+</body>
+</html>
