@@ -1,15 +1,202 @@
-/* ==========================================
-   LOGO AM — GIRO 360° REAL
-========================================== */
+/* =========================================================
+   AM SHOP — ESTILO GENERAL
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #050505;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================================================
+   HERO PRINCIPAL
+========================================================= */
+
+.hero-interactive {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  height: 100svh;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse at 50% 20%,
+      #777 0%,
+      #303030 28%,
+      #111 58%,
+      #030303 100%
+    );
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+}
+
+/* =========================================================
+   NUBES
+========================================================= */
+
+.hero-clouds {
+  position: absolute;
+  inset: -15%;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse at 20% 30%,
+      rgba(255,255,255,.30) 0%,
+      rgba(255,255,255,.08) 22%,
+      transparent 45%
+    ),
+    radial-gradient(
+      ellipse at 80% 25%,
+      rgba(255,255,255,.20) 0%,
+      rgba(255,255,255,.05) 25%,
+      transparent 48%
+    ),
+    radial-gradient(
+      ellipse at 50% 75%,
+      rgba(180,180,180,.18) 0%,
+      transparent 48%
+    );
+  filter: blur(12px);
+}
+
+.cloud-layer {
+  position: absolute;
+  inset: -20%;
+  opacity: .8;
+  filter: blur(35px);
+  will-change: transform;
+}
+
+.cloud-layer--back {
+  background:
+    radial-gradient(
+      ellipse at 15% 55%,
+      rgba(255,255,255,.25) 0 12%,
+      transparent 30%
+    ),
+    radial-gradient(
+      ellipse at 75% 35%,
+      rgba(200,200,200,.22) 0 15%,
+      transparent 34%
+    );
+  animation: cloudsBack 35s ease-in-out infinite alternate;
+}
+
+.cloud-layer--middle {
+  background:
+    radial-gradient(
+      ellipse at 35% 35%,
+      rgba(255,255,255,.22) 0 14%,
+      transparent 34%
+    ),
+    radial-gradient(
+      ellipse at 85% 70%,
+      rgba(150,150,150,.25) 0 15%,
+      transparent 35%
+    );
+  animation: cloudsMiddle 28s ease-in-out infinite alternate;
+}
+
+.cloud-layer--front {
+  background:
+    radial-gradient(
+      ellipse at 55% 50%,
+      rgba(255,255,255,.14) 0 17%,
+      transparent 38%
+    ),
+    radial-gradient(
+      ellipse at 10% 85%,
+      rgba(190,190,190,.16) 0 15%,
+      transparent 35%
+    );
+  animation: cloudsFront 22s ease-in-out infinite alternate;
+}
+
+@keyframes cloudsBack {
+  from {
+    transform: translate3d(-3%, -2%, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(4%, 3%, 0) scale(1.08);
+  }
+}
+
+@keyframes cloudsMiddle {
+  from {
+    transform: translate3d(4%, 2%, 0) scale(1.05);
+  }
+
+  to {
+    transform: translate3d(-5%, -3%, 0) scale(1.12);
+  }
+}
+
+@keyframes cloudsFront {
+  from {
+    transform: translate3d(-4%, 3%, 0) scale(1.08);
+  }
+
+  to {
+    transform: translate3d(5%, -3%, 0) scale(1.15);
+  }
+}
+
+/* =========================================================
+   CONTENIDO
+========================================================= */
+
+.hero-interactive__content {
+  position: relative;
+  z-index: 5;
+  width: min(92%, 900px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* =========================================================
+   LOGO
+========================================================= */
 
 .hero-logo {
+  width: min(72vw, 520px);
+  height: min(42vh, 420px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   perspective: 1000px;
   transform-style: preserve-3d;
   will-change: transform;
+
   touch-action: none;
   cursor: grab;
+
   -webkit-user-select: none;
   user-select: none;
+
+  margin-bottom: 20px;
 }
 
 .hero-logo:active {
@@ -17,29 +204,204 @@
 }
 
 .hero-logo__image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
   transform-style: preserve-3d;
   backface-visibility: visible;
   -webkit-backface-visibility: visible;
+
   pointer-events: none;
   user-select: none;
   -webkit-user-drag: none;
+
+  filter: drop-shadow(0 15px 35px rgba(0,0,0,.45));
 }
 
-/* Mantiene el logo limpio durante el giro */
-.hero-logo img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+.hero-logo__text {
+  color: #fff;
+  font-size: clamp(100px, 25vw, 240px);
+  font-weight: 900;
+  line-height: 1;
 }
 
-/* Evita que el navegador interprete el gesto
-   como desplazamiento mientras giras el logo */
-#hero-logo {
-  touch-action: none;
+/* =========================================================
+   TEXTO
+========================================================= */
+
+.hero-interactive__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
 
-/* Cuando comienza la entrada */
-.hero-interactive.is-entering .hero-logo {
+.hero-title {
+  margin: 0;
+
+  color: #fff;
+
+  font-size: clamp(42px, 8vw, 80px);
+  font-weight: 900;
+  line-height: 1;
+
+  text-shadow:
+    0 3px 15px rgba(0,0,0,.75);
+}
+
+.hero-subtitle {
+  margin: 0 0 18px;
+
+  color: #fff;
+
+  font-size: clamp(17px, 3vw, 25px);
+  font-weight: 500;
+
+  text-shadow:
+    0 2px 10px rgba(0,0,0,.8);
+}
+
+/* =========================================================
+   BOTÓN ENTRAR
+========================================================= */
+
+.hero-enter {
+  appearance: none;
+  border: 1px solid rgba(255,255,255,.8);
+
+  padding: 15px 42px;
+
+  border-radius: 999px;
+
+  background: rgba(255,255,255,.95);
+  color: #050505;
+
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 2px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 10px 35px rgba(0,0,0,.35);
+
+  transition:
+    transform .25s ease,
+    background .25s ease,
+    box-shadow .25s ease;
+}
+
+.hero-enter:hover {
+  transform: scale(1.06);
+  background: #fff;
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,.5);
+}
+
+.hero-enter:active {
+  transform: scale(.96);
+}
+
+/* =========================================================
+   TEXTO DESLIZA
+========================================================= */
+
+.hero-scroll-hint {
+  position: absolute;
+
+  bottom: 28px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  color: rgba(255,255,255,.75);
+
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  z-index: 10;
+
   pointer-events: none;
+}
+
+/* =========================================================
+   ANIMACIÓN DE ENTRADA
+========================================================= */
+
+.hero-interactive.is-entering {
+  animation: heroZoomOut .9s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+.hero-interactive.is-entering .hero-logo {
+  animation: logoZoomIn .9s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+@keyframes heroZoomOut {
+  to {
+    transform: scale(1.12);
+    opacity: 0;
+  }
+}
+
+@keyframes logoZoomIn {
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+/* =========================================================
+   MÓVIL
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .hero-interactive {
+    min-height: 100svh;
+    height: 100svh;
+  }
+
+  .hero-logo {
+    width: 82vw;
+    height: 38vh;
+    margin-bottom: 8px;
+  }
+
+  .hero-title {
+    font-size: 48px;
+  }
+
+  .hero-subtitle {
+    font-size: 18px;
+    margin-bottom: 14px;
+  }
+
+  .hero-enter {
+    padding: 14px 35px;
+    font-size: 15px;
+  }
+
+  .hero-scroll-hint {
+    bottom: 20px;
+  }
+}
+
+/* =========================================================
+   ACCESIBILIDAD
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .cloud-layer,
+  .hero-interactive,
+  .hero-logo {
+    animation: none !important;
+    transition: none !important;
+  }
 }
