@@ -18,16 +18,12 @@
       aria-label="Logo AM"
       tabindex="0"
     >
-      {% if shop.brand.logo %}
-        <img
-          src="{{ shop.brand.logo | image_url: width: 900 }}"
-          alt="{{ shop.name | escape }}"
-          class="hero-logo__image"
-          draggable="false"
-        >
-      {% else %}
-        <span class="hero-logo__text">AM</span>
-      {% endif %}
+      <img
+        src="{{ 'logo-am.png' | asset_url }}"
+        alt="AM"
+        class="hero-logo__image"
+        draggable="false"
+      >
     </div>
 
     <div class="hero-interactive__text">
